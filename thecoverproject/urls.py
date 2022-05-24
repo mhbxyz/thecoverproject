@@ -1,7 +1,8 @@
 from thecoverproject import Consoles, Handhelds, Computers
 
-_home = "http://thecoverproject.net/"
-_game_system_page = _home + "view.php?cat_id={}"
+home = "http://thecoverproject.net/"
+index_opt = "&view={}"
+_game_system_page = home + "view.php?cat_id={}"
 
 _console_ids = {
     Consoles.three_do: 40,
@@ -135,3 +136,5 @@ computers = {
     Computers.ms_dos: _game_system_page.format(_computer_ids[Computers.ms_dos]),
     Computers.windows: _game_system_page.format(_computer_ids[Computers.windows]),
 }
+
+game_systems = consoles | handhelds | computers
