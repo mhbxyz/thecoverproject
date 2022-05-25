@@ -97,3 +97,9 @@ class PageIndex(Enum):
     Y = "y"
     Z = "z"
     NUM = "9"
+
+
+class Region(Enum):
+    us = "United States"
+    eu = "Europe"
+    jp = "Japan"
