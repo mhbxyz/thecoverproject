@@ -1,8 +1,9 @@
 from thecoverproject import Consoles, Handhelds, Computers
 
-home = "http://thecoverproject.net/"
+home = "http://thecoverproject.net"
 index_opt = "&view={}"
-_game_system_page = home + "view.php?cat_id={}"
+game_page = home + "/view.php?game_id={}"
+_game_system_page = home + "/view.php?cat_id={}"
 
 _console_ids = {
     Consoles.three_do: 40,
