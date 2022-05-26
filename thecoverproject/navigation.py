@@ -92,15 +92,15 @@ def _get_other_covers_data(other_covers: Tag, current_cover_thumbnail_url: str) 
     return related_covers
 
 
-def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
+def _get_description_and_covers_data_cells(game_id: int) -> tuple[Tag, Tag]:
 
-    data: dict
     game_url: str
     request: Response
     buffer: Any
     others_covers: Tag
     description: Tag
     related_covers: list
+    data_cells: list[Tag, Tag]
 
     game_url = urls.game_page.format(game_id)
     request = requests.get(game_url)
@@ -108,9 +108,20 @@ def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
     buffer = buffer.find("td", class_="pageBody")
     data_cells = buffer.find_all("td", class_="pageBody")  # Gets the data cells with cover details and others covers
 
-    description = data_cells[1]
+    return data_cells[0], data_cells[1]
+
+
+def get_game_covers_data(game_id: int) -> list[dict]:
+    covers, description = _get_description_and_covers_data_cells(game_id)
+    thumbnail_url: str = construct_url(description.img.get("src"))
+    return _get_other_covers_data(covers, thumbnail_url)
+
+
+def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
+
+    covers, description = _get_description_and_covers_data_cells(game_id)
     data = _get_description_data(description)
-    data["other_covers"] = _get_other_covers_data(data_cells[0], data["urls"]["thumbnail"])
+    data["other_covers"] = _get_other_covers_data(covers, data["urls"]["thumbnail"])
 
     if with_images:
         data["images"] = {
