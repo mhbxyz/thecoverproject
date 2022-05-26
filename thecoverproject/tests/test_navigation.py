@@ -1,5 +1,7 @@
 from thecoverproject import Console, PageIndex
-from thecoverproject.navigation import get_game_system_page_data, get_game_page_data
+from thecoverproject.navigation import get_game_system_page_data, get_game_page_data, get_game_covers_data
+
+TEST_GAME_ID = 895
 
 
 def test_get_game_system_page_data():
@@ -51,7 +53,7 @@ def test_get_game_system_page_data():
     ]
     data = get_game_system_page_data(Console.playstation_one, PageIndex.NUM)
     for row in data:
-        del row["nb_of_covers"]
+        del row["nb_of_covers"]  # Removing number of covers because it's not a constant
     assert data == expected_result
 
 
@@ -185,8 +187,8 @@ def test_get_game_page_data():
                 }
             }
         ]
-}
-    data = get_game_page_data(895)
+    }
+    data = get_game_page_data(TEST_GAME_ID)
     del data["nb_of_downloads"]  # Removing number of downloads because it's not a constant
     assert data == expected_result
 
@@ -205,3 +207,127 @@ def test_get_game_page_data_with_images():
     with open("images/ps1_castlevaniasymphonyofthenight_1.jpg", "rb") as image:
         cover = image.read()
         assert data["images"]["cover"] == cover
+
+
+def test_get_game_covers():
+    expected_result = [
+        {
+            "description": "Custom Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevaniasymphonyofthenight_1_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=1372"
+            }
+        },
+        {
+            "description": "Custom Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "http://thecoverproject.net/uploads/pending/playstation_1.castlevaniasymphonyofthenight_US.16326074111335468916_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=18716"
+            }
+        },
+        {
+            "description": "Custom Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "http://thecoverproject.net/uploads/pending/playstation_1.castlevaniasymphonyofthenight_US.163665568477547041_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=19565"
+            }
+        },
+        {
+            "description": "Retail Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "http://thecoverproject.net/uploads/pending/playstation_1.castlevaniasymphonyofthenight_US.16366557371587417560_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=19566"
+            }
+        },
+        {
+            "description": "CD Case - EU Front",
+            "format": "PAL",
+            "region": "Europe",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevania_front_eu_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=3041"
+            }
+        },
+        {
+            "description": "CD Case - EU Rear",
+            "format": "PAL",
+            "region": "Europe",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevania_rear_eu_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=3042"
+            }
+        },
+        {
+            "description": "Custom Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps_castlevaniasymphonyofthenight_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=7577"
+            }
+        },
+        {
+            "description": "Custom Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps_castlevaniasymphonyofthenight_2_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=7578"
+            }
+        },
+        {
+            "description": "Custom Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps_castlevaniasymphonyofthenight_3_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=7579"
+            }
+        },
+        {
+            "description": "Custom DVD Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevaniasymphonyofthenight_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=373"
+            }
+        },
+        {
+            "description": "Custom DVD Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevaniasymphonyofthenight_2_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=1601"
+            }
+        },
+        {
+            "description": "Custom DVD Cover",
+            "format": "NTSC",
+            "region": "United States",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevaniasymphonyofthenight_3_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=1637"
+            }
+        },
+        {
+            "description": "Disc -EU",
+            "format": "PAL",
+            "region": "Europe",
+            "urls": {
+                "thumbnail": "https://coverproject.sfo2.cdn.digitaloceanspaces.com/playstation_1/ps1_castlevania_cd_eu_thumb.jpg",
+                "cover": "http://thecoverproject.net/view.php?cover_id=3043"
+            }
+        }
+    ]
+    data = get_game_covers_data(TEST_GAME_ID)
+    assert data == expected_result
