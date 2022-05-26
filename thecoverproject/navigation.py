@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup, Tag, PageElement, ResultSet
 from requests import Response
 
-from thecoverproject import urls, Consoles, Handhelds, Computers, PageIndex, Region
+from thecoverproject import urls, Console, Handheld, Computer, PageIndex, Region
 from thecoverproject.exceptions import UnknownRegionError
 from thecoverproject.urls import index_opt
 from thecoverproject.utils import construct_url
@@ -121,7 +121,7 @@ def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
     return data
 
 
-def get_game_system_page_data(game_system: Consoles | Handhelds | Computers, index: PageIndex) -> list[dict]:
+def get_game_system_page_data(game_system: Console | Handheld | Computer, index: PageIndex) -> list[dict]:
 
     buffer: Any
     game_system_url: str

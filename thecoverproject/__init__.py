@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Consoles(Enum):
+class Console(Enum):
     three_do = "3DO"
     amiga_cd_thirty_two = "Amiga CD32"
     atari_two_six_zero_zero = "Atari 2600"
@@ -42,7 +42,7 @@ class Consoles(Enum):
     xbox_series_x = "Xbox Series X"
 
 
-class Handhelds(Enum):
+class Handheld(Enum):
     three_ds = "3DS"
     atari_lynx = "Atari Lynx"
     game_gear = "Game Gear"
@@ -61,7 +61,7 @@ class Handhelds(Enum):
     wonderswan_color = "Wonderswan Color"
 
 
-class Computers(Enum):
+class Computer(Enum):
     amiga = "Amiga"
     linux = "Linux"
     mac = "Mac"
