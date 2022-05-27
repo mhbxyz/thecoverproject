@@ -5,10 +5,9 @@ import requests
 from bs4 import BeautifulSoup, Tag, PageElement, ResultSet
 from requests import Response
 
-from thecoverproject import urls, Console, Handheld, Computer, PageIndex, Region, GameSystem
+from thecoverproject import PageIndex, Region, GameSystem
 from thecoverproject.exceptions import UnknownRegionError
-from thecoverproject.urls import index_opt
-from thecoverproject.utils import construct_url
+from thecoverproject.utils import construct_url, construct_game_system_url, construct_game_page_url
 
 
 def _get_description_data(description: Tag) -> dict:
@@ -102,7 +101,7 @@ def _get_description_and_covers_data_cells(game_id: int) -> tuple[Tag, Tag]:
     related_covers: list
     data_cells: list[Tag, Tag]
 
-    game_url = urls.game_page.format(game_id)
+    game_url = construct_game_page_url(game_id)
     request = requests.get(game_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     buffer = buffer.find("td", class_="pageBody")
@@ -138,7 +137,7 @@ def get_game_system_page_data(game_system: GameSystem, index: PageIndex) -> list
     game_system_url: str
     request: Response
 
-    game_system_url = urls.game_systems[game_system] + index_opt.format(index.value)
+    game_system_url = construct_game_system_url(game_system, index.value)
     request = requests.get(game_system_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     buffer = buffer.find("table", class_="tblSpecs")
@@ -174,7 +173,7 @@ def get_nb_of_pages_for_game_system(game_system: GameSystem, index: PageIndex) -
     game_system_url: str
     request: Response
 
-    game_system_url = urls.game_systems[game_system] + index_opt.format(index.value)
+    game_system_url = construct_game_system_url(game_system, index.value)
     request = requests.get(game_system_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
 

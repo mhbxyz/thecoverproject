@@ -3,6 +3,7 @@ from thecoverproject import Console, Handheld, Computer
 home = "http://thecoverproject.net"
 index_opt = "&view={}"
 game_page = home + "/view.php?game_id={}"
+cover_page = home + "/view.php?cover_id={}"
 _game_system_page = home + "/view.php?cat_id={}"
 
 _console_ids = {
