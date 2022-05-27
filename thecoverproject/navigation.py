@@ -27,7 +27,7 @@ def _get_description_data(description: Tag) -> dict:
     description_content = description.contents
 
     # get the text of the last page element, split it using spaces
-    # and get the nb of downloads in the fith cell of the splitted string
+    # and get the nb of downloads in the fifth cell of the divided string
     nb_of_downloads = int(description_content[-1].text.strip().split(" ")[5])
 
     description_content = [tag for tag in description_content[0:-1] if tag.name != "br"]
@@ -51,7 +51,7 @@ def _get_other_covers_data(other_covers: Tag, current_cover_thumbnail_url: str) 
     others_covers_table: ResultSet
 
     other_covers.find("li", class_="tabHeader").extract()  # removes useless table header
-    others_covers_table = other_covers.find_all("li")  # Splits the covers table into a list
+    others_covers_table = other_covers.find_all("li")  # Splits the covers' table into a list
 
     li: PageElement
     related_covers = list()
@@ -66,14 +66,14 @@ def _get_other_covers_data(other_covers: Tag, current_cover_thumbnail_url: str) 
         if not li.attrs == {} and "tabSelected" in li.attrs["class"]:  # Checks if we are on the current selected cover
             thumbnail_url = current_cover_thumbnail_url
         else:
-            regex = match(r"showThumb\('[0-9]+', '(?P<url>[\w./_:]+)'\)", li.a.get("onmouseover"))
+            regex = match(r"showThumb\('\d+', '(?P<url>[\w./_:]+)'\)", li.a.get("onmouseover"))
             thumbnail_url = construct_url(regex.group("url"))
 
         content = [tag for tag in li.a.contents if tag.name != "br"]  # Removes br tag at pos 1
         span_content = content[1].contents
 
         # Gets a region code from the flag icon url using a regex
-        regex = match(r"\/images\/flags\/(?P<region>[a-z]+)\.png", span_content[-1].get("src"))
+        regex = match(r"/images/flags/(?P<region>[a-z]+)\.png", span_content[-1].get("src"))
         region_code = regex.group("region")
 
         if region_code not in list(Region.__members__.keys()):
