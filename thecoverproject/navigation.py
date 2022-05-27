@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup, Tag, PageElement, ResultSet
 from requests import Response
 
-from thecoverproject import urls, Console, Handheld, Computer, PageIndex, Region
+from thecoverproject import urls, Console, Handheld, Computer, PageIndex, Region, GameSystem
 from thecoverproject.exceptions import UnknownRegionError
 from thecoverproject.urls import index_opt
 from thecoverproject.utils import construct_url
@@ -132,7 +132,7 @@ def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
     return data
 
 
-def get_game_system_page_data(game_system: Console | Handheld | Computer, index: PageIndex) -> list[dict]:
+def get_game_system_page_data(game_system: GameSystem, index: PageIndex) -> list[dict]:
 
     buffer: Any
     game_system_url: str
@@ -166,3 +166,18 @@ def get_game_system_page_data(game_system: Console | Handheld | Computer, index:
         }
 
     return [get_data(row) for row in rows]
+
+
+def get_nb_of_pages_for_game_system(game_system: GameSystem, index: PageIndex) -> int:
+
+    buffer: BeautifulSoup
+    game_system_url: str
+    request: Response
+
+    game_system_url = urls.game_systems[game_system] + index_opt.format(index.value)
+    request = requests.get(game_system_url)
+    buffer = BeautifulSoup(request.text, 'html.parser')
+    paginator = buffer.find("div", class_="paginator")
+    links = paginator.find_all("a")[:-1]  # Retrieves all the pages links and removes the next page link
+
+    return int(links[-1].text)
