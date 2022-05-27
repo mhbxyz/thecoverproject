@@ -1,5 +1,6 @@
 from thecoverproject import Console, PageIndex
-from thecoverproject.navigation import get_game_system_page_data, get_game_page_data, get_game_covers_data
+from thecoverproject.navigation import get_game_system_page_data, get_game_page_data, get_game_covers_data, \
+    get_nb_of_pages_for_game_system
 
 TEST_GAME_ID = 895
 
@@ -194,7 +195,6 @@ def test_get_game_page_data():
 
 
 def test_get_game_page_data_with_images():
-
     thumbnail: bytes
     cover: bytes
 
@@ -331,3 +331,9 @@ def test_get_game_covers():
     ]
     data = get_game_covers_data(TEST_GAME_ID)
     assert data == expected_result
+
+
+def test_get_nb_of_pages_for_game_system():
+    expected_result = 3
+    nb_of_pages = get_nb_of_pages_for_game_system(Console.playstation_one, PageIndex.A)
+    assert nb_of_pages == expected_result
