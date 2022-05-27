@@ -198,7 +198,7 @@ def test_get_game_page_data_with_images():
     thumbnail: bytes
     cover: bytes
 
-    data = get_game_page_data(895, with_images=True)
+    data = get_game_page_data(TEST_GAME_ID, with_images=True)
 
     with open("images/ps1_castlevaniasymphonyofthenight_1_thumb.jpg", "rb") as image:
         thumbnail = image.read()
