@@ -177,6 +177,10 @@ def get_nb_of_pages_for_game_system(game_system: GameSystem, index: PageIndex) -
     game_system_url = urls.game_systems[game_system] + index_opt.format(index.value)
     request = requests.get(game_system_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
+
+    if buffer is None:
+        return 1
+
     paginator = buffer.find("div", class_="paginator")
     links = paginator.find_all("a")[:-1]  # Retrieves all the pages links and removes the next page link
 
