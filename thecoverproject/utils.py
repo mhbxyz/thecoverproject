@@ -1,4 +1,4 @@
-from thecoverproject import urls, GameSystem, PageIndex
+from thecoverproject import urls, GameSystem, PageCategory
 from urls import index_opt
 
 
@@ -11,7 +11,7 @@ def construct_url(url: str):
     return url
 
 
-def construct_game_system_url(game_system: GameSystem, index: PageIndex) -> str:
+def construct_game_system_url(game_system: GameSystem, index: PageCategory) -> str:
     return urls.game_systems[game_system] + index_opt.format(index.value)
 
 

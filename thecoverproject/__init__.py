@@ -69,7 +69,7 @@ class Computer(Enum):
     windows = "Windows"
 
 
-class PageIndex(Enum):
+class PageCategory(Enum):
     A = "a"
     B = "b"
     C = "c"

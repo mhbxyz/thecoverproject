@@ -1,4 +1,4 @@
-from thecoverproject import Console, PageIndex
+from thecoverproject import Console, PageCategory
 from thecoverproject.navigation import get_game_system_page_data, get_game_page_data, get_game_covers_data, \
     get_nb_of_pages_for_game_system
 
@@ -52,7 +52,7 @@ def test_get_game_system_page_data():
             'url': 'http://thecoverproject.net/view.php?game_id=1209'
         }
     ]
-    data = get_game_system_page_data(Console.playstation_one, PageIndex.NUM)
+    data = get_game_system_page_data(Console.playstation_one, PageCategory.NUM)
     for row in data:
         del row["nb_of_covers"]  # Removing number of covers because it's not a constant
     assert data == expected_result
@@ -335,5 +335,5 @@ def test_get_game_covers():
 
 def test_get_nb_of_pages_for_game_system():
     expected_result = 3
-    nb_of_pages = get_nb_of_pages_for_game_system(Console.playstation_one, PageIndex.A)
+    nb_of_pages = get_nb_of_pages_for_game_system(Console.playstation_one, PageCategory.A)
     assert nb_of_pages == expected_result
