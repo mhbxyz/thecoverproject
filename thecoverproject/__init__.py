@@ -103,3 +103,6 @@ class Region(Enum):
     us = "United States"
     eu = "Europe"
     jp = "Japan"
+
+
+GameSystem = Console | Handheld | Computer
