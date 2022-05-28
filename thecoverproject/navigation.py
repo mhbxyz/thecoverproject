@@ -7,7 +7,8 @@ from requests import Response
 
 from thecoverproject import PageCategory, Region, GameSystem
 from thecoverproject.exceptions import UnknownRegionError
-from thecoverproject.utils import construct_url, construct_game_system_url, construct_game_page_url
+from thecoverproject.utils import construct_url, construct_game_system_url, construct_game_page_url, \
+    construct_search_url
 
 
 def _get_description_data(description: Tag) -> dict:
@@ -184,3 +185,33 @@ def get_nb_of_pages_for_game_system(game_system: GameSystem, category: PageCateg
     links = paginator.find_all("a")[:-1]  # Retrieves all the pages links and removes the next page link
 
     return int(links[-1].text)
+
+
+def search(research_topic: str):
+
+    buffer: Any
+    game_system_url: str
+    request: Response
+
+    game_system_url = construct_search_url(research_topic)
+    request = requests.get(game_system_url)
+    buffer = BeautifulSoup(request.text, 'html.parser')
+    buffer = buffer.find("table", class_="tblSpecs")
+    rows = buffer.find_all("tr")
+
+    def get_data(row: Tag):
+
+        name: str
+        platform: str
+
+        game_info = row.td.text.strip().rsplit(" ", 1)
+        name = game_info[0]
+        platform = game_info[1].strip("()")
+
+        return {
+            "name": name,
+            "platform_code": platform,
+            "url": construct_url(row.td.span.a.get("href"))
+        }
+
+    return [get_data(row) for row in rows]
