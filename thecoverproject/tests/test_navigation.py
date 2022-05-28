@@ -1,6 +1,6 @@
 from thecoverproject import Console, PageCategory
 from thecoverproject.navigation import get_platform_page_data, get_game_page_data, get_game_covers_data, \
-    get_nb_of_pages_for_platform, search
+    get_nb_of_pages_for_platform, search, get_all_games_for_platform_and_index
 
 TEST_GAME_ID = 895
 
@@ -528,4 +528,276 @@ def test_search_with_multiple_result_pages():
         }
     ]
     data = search("Castlevania")
+    assert data == expected_result
+
+
+def test_get_all_games_for_platform_and_index():
+    expected_result = [
+        {
+            "name": "A-Train",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=10577"
+        },
+        {
+            "name": "A.R.M.O.R.I.N.E.S.",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=14197"
+        },
+        {
+            "name": "Ace Combat 2",
+            "nb_of_covers": 6,
+            "url": "http://thecoverproject.net/view.php?game_id=8312"
+        },
+        {
+            "name": "Ace Combat 3 - Electrosphere",
+            "nb_of_covers": 4,
+            "url": "http://thecoverproject.net/view.php?game_id=8313"
+        },
+        {
+            "name": "Aconcagua",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=9966"
+        },
+        {
+            "name": "Action Bass",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=15371"
+        },
+        {
+            "name": "Activision Classics",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=8224"
+        },
+        {
+            "name": "Adidas Power Soccer",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=15372"
+        },
+        {
+            "name": "Adidas Power Soccer '98",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=15373"
+        },
+        {
+            "name": "Agile Warrior F-111X",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=15374"
+        },
+        {
+            "name": "Air Combat",
+            "nb_of_covers": 4,
+            "url": "http://thecoverproject.net/view.php?game_id=8314"
+        },
+        {
+            "name": "Alien Resurrection",
+            "nb_of_covers": 5,
+            "url": "http://thecoverproject.net/view.php?game_id=5500"
+        },
+        {
+            "name": "Alien Trilogy",
+            "nb_of_covers": 6,
+            "url": "http://thecoverproject.net/view.php?game_id=2182"
+        },
+        {
+            "name": "All-Star Baseball Featuring Frank Thomas",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=14977"
+        },
+        {
+            "name": "All-Star Slammin' D-Ball",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=15379"
+        },
+        {
+            "name": "Allied General",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=15375"
+        },
+        {
+            "name": "Alone in the Dark: One-Eyed Jack's Revenge",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=10571"
+        },
+        {
+            "name": "Alone in the Dark: The New Nightmare",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=10570"
+        },
+        {
+            "name": "Alundra",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=8330"
+        },
+        {
+            "name": "Alundra 2",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=7740"
+        },
+        {
+            "name": "Animaniacs: Ten Pin Alley",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=11570"
+        },
+        {
+            "name": "Anna Kournikova's Smash Court Tennis",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=6636"
+        },
+        {
+            "name": "Ape Escape",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=1211"
+        },
+        {
+            "name": "Apocalypse",
+            "nb_of_covers": 6,
+            "url": "http://thecoverproject.net/view.php?game_id=7383"
+        },
+        {
+            "name": "Arc the Lad Collection",
+            "nb_of_covers": 5,
+            "url": "http://thecoverproject.net/view.php?game_id=6627"
+        },
+        {
+            "name": "Arcade Greatest Hits: The Midway Collection 2",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=10574"
+        },
+        {
+            "name": "Arcade Party Pak",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=10575"
+        },
+        {
+            "name": "Arcade's Greatest Hits: The Atari Collection 1",
+            "nb_of_covers": 5,
+            "url": "http://thecoverproject.net/view.php?game_id=5585"
+        },
+        {
+            "name": "Area 51",
+            "nb_of_covers": 7,
+            "url": "http://thecoverproject.net/view.php?game_id=988"
+        },
+        {
+            "name": "Armored Core",
+            "nb_of_covers": 8,
+            "url": "http://thecoverproject.net/view.php?game_id=1312"
+        },
+        {
+            "name": "Armored Core: Master of Arena",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=10576"
+        },
+        {
+            "name": "Armored Core: Project Phantasma",
+            "nb_of_covers": 4,
+            "url": "http://thecoverproject.net/view.php?game_id=14529"
+        },
+        {
+            "name": "Army Men 3D",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=6699"
+        },
+        {
+            "name": "Army Men: Air Attack",
+            "nb_of_covers": 4,
+            "url": "http://thecoverproject.net/view.php?game_id=2108"
+        },
+        {
+            "name": "Army Men: Air Attack 2",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=6700"
+        },
+        {
+            "name": "Army Men: Green Rogue",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=6701"
+        },
+        {
+            "name": "Army Men: Sarge's Heroes",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=6702"
+        },
+        {
+            "name": "Army Men: Sarge's Heroes 2",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=6703"
+        },
+        {
+            "name": "Army Men: World War",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=1232"
+        },
+        {
+            "name": "Army Men: World War: Final Front",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=6704"
+        },
+        {
+            "name": "Army Men: World War: Land, See, Air",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=6621"
+        },
+        {
+            "name": "Army Men: World War: Team Assault",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=6705"
+        },
+        {
+            "name": "Assault Retributioin",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=14198"
+        },
+        {
+            "name": "Assault Rigs",
+            "nb_of_covers": 3,
+            "url": "http://thecoverproject.net/view.php?game_id=6643"
+        },
+        {
+            "name": "Assault Suit Valken 2",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=6846"
+        },
+        {
+            "name": "Asteroids",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=14519"
+        },
+        {
+            "name": "Atari Anniversary Edition Redux",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=14199"
+        },
+        {
+            "name": "Atelier Elie",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=7746"
+        },
+        {
+            "name": "Atelier Marie",
+            "nb_of_covers": 1,
+            "url": "http://thecoverproject.net/view.php?game_id=7747"
+        },
+        {
+            "name": "ATV Mania",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=14200"
+        },
+        {
+            "name": "ATV: Quad Power Racing",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=14528"
+        },
+        {
+            "name": "Austin Powers Pinball",
+            "nb_of_covers": 2,
+            "url": "http://thecoverproject.net/view.php?game_id=15378"
+        },
+        {
+            "name": "Azure Dreams",
+            "nb_of_covers": 5,
+            "url": "http://thecoverproject.net/view.php?game_id=1070"
+        }
+    ]
+    data = get_all_games_for_platform_and_index(Console.playstation_one, PageCategory.A)
     assert data == expected_result
