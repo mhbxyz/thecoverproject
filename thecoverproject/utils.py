@@ -21,3 +21,11 @@ def construct_game_page_url(game_id: int) -> str:
 
 def construct_game_cover_url(cover_id: int) -> str:
     return urls.cover_page.format(cover_id)
+
+
+def construct_search_url(research_topic: str) -> str:
+
+    search_string: str
+
+    search_string = research_topic.replace(" ", "+")
+    return urls.search_page.format(search_string)
