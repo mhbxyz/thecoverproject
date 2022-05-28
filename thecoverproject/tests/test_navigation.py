@@ -1,11 +1,11 @@
 from thecoverproject import Console, PageCategory
-from thecoverproject.navigation import get_game_system_page_data, get_game_page_data, get_game_covers_data, \
+from thecoverproject.navigation import get_platform_page_data, get_game_page_data, get_game_covers_data, \
     get_nb_of_pages_for_game_system, search
 
 TEST_GAME_ID = 895
 
 
-def test_get_game_system_page_data():
+def test_get_platform_page_data():
     expected_result = [
         {
             'name': '007 - The World Is Not Enough',
@@ -52,7 +52,7 @@ def test_get_game_system_page_data():
             'url': 'http://thecoverproject.net/view.php?game_id=1209'
         }
     ]
-    data = get_game_system_page_data(Console.playstation_one, PageCategory.NUM)
+    data = get_platform_page_data(Console.playstation_one, PageCategory.NUM)
     for row in data:
         del row["nb_of_covers"]  # Removing number of covers because it's not a constant
     assert data == expected_result

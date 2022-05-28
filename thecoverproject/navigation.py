@@ -5,9 +5,9 @@ import requests
 from bs4 import BeautifulSoup, Tag, PageElement, ResultSet
 from requests import Response
 
-from thecoverproject import PageCategory, Region, GameSystem
+from thecoverproject import PageCategory, Region, Platform
 from thecoverproject.exceptions import UnknownRegionError
-from thecoverproject.utils import construct_url, construct_game_system_url, construct_game_page_url, \
+from thecoverproject.utils import construct_url, construct_platform_url, construct_game_url, \
     construct_search_url
 
 
@@ -102,7 +102,7 @@ def _get_description_and_covers_data_cells(game_id: int) -> tuple[Tag, Tag]:
     related_covers: list
     data_cells: list[Tag, Tag]
 
-    game_url = construct_game_page_url(game_id)
+    game_url = construct_game_url(game_id)
     request = requests.get(game_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     buffer = buffer.find("td", class_="pageBody")
@@ -132,14 +132,14 @@ def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
     return data
 
 
-def get_game_system_page_data(game_system: GameSystem, category: PageCategory, page_index: int = 1) -> list[dict]:
+def get_platform_page_data(game_system: Platform, category: PageCategory, page_index: int = 1) -> list[dict]:
 
     buffer: Any
-    game_system_url: str
+    platform_url: str
     request: Response
 
-    game_system_url = construct_game_system_url(game_system, category, page_index)
-    request = requests.get(game_system_url)
+    platform_url = construct_platform_url(game_system, category, page_index)
+    request = requests.get(platform_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     buffer = buffer.find("table", class_="tblSpecs")
     rows = buffer.find_all("tr")
@@ -168,14 +168,14 @@ def get_game_system_page_data(game_system: GameSystem, category: PageCategory, p
     return [get_data(row) for row in rows]
 
 
-def get_nb_of_pages_for_game_system(game_system: GameSystem, category: PageCategory) -> int:
+def get_nb_of_pages_for_game_system(game_system: Platform, category: PageCategory) -> int:
 
     buffer: BeautifulSoup
-    game_system_url: str
+    platform_url: str
     request: Response
 
-    game_system_url = construct_game_system_url(game_system, category)
-    request = requests.get(game_system_url)
+    platform_url = construct_platform_url(game_system, category)
+    request = requests.get(platform_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
 
     if buffer is None:

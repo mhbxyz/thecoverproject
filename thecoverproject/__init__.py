@@ -105,4 +105,4 @@ class Region(Enum):
     jp = "Japan"
 
 
-GameSystem = Console | Handheld | Computer
+Platform = Console | Handheld | Computer
