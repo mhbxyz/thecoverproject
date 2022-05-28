@@ -1,3 +1,5 @@
+import json
+
 from thecoverproject import urls, Platform, PageCategory
 from urls import index_opt, page_opt
 
@@ -29,3 +31,7 @@ def construct_search_url(research_topic: str, page_index: int = 1) -> str:
 
     search_string = research_topic.replace(" ", "+")
     return urls.search_page.format(search_string) + page_opt.format(page_index)
+
+
+def ppjson(data: list | dict, indent: int = 4):
+    print(json.dumps(data, indent=indent))
