@@ -8,6 +8,7 @@ page_opt = "&page={}"
 game_page = home + "/view.php?game_id={}"
 cover_page = home + "/view.php?cover_id={}"
 _game_system_page = home + "/view.php?cat_id={}"
+search_page = home + "/view.php?searchstring={}"
 
 _console_ids = {
     Console.three_do: 40,
