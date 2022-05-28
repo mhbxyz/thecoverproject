@@ -234,3 +234,17 @@ def search(research_topic: str) -> list[dict]:
         search_results.extend([get_data(row) for row in rows])
 
     return search_results
+
+
+def get_all_games_for_platform_and_index(platform: Platform, category: PageCategory) -> list[dict]:
+
+    data: list[dict]
+    nb_of_pages: int
+
+    data = []
+    nb_of_pages = get_nb_of_pages_for_platform(platform, category)
+
+    for n in range(1, nb_of_pages + 1):
+        data.extend(get_platform_page_data(platform, category, n))
+
+    return data
