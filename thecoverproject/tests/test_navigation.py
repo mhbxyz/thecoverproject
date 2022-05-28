@@ -1,6 +1,6 @@
 from thecoverproject import Console, PageCategory
 from thecoverproject.navigation import get_game_system_page_data, get_game_page_data, get_game_covers_data, \
-    get_nb_of_pages_for_game_system
+    get_nb_of_pages_for_game_system, search
 
 TEST_GAME_ID = 895
 
@@ -337,3 +337,13 @@ def test_get_nb_of_pages_for_game_system():
     expected_result = 3
     nb_of_pages = get_nb_of_pages_for_game_system(Console.playstation_one, PageCategory.A)
     assert nb_of_pages == expected_result
+
+
+def test_search():
+    expected_result = [{
+        'name': 'Castlevania: Symphony of the Night',
+        'platform_code': 'PS1',
+        'url': 'http://thecoverproject.net/view.php?game_id=895'
+    }]
+    data = search("Castlevania Symphony of the Night")
+    assert data == expected_result
