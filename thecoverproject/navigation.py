@@ -131,13 +131,13 @@ def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
     return data
 
 
-def get_game_system_page_data(game_system: GameSystem, category: PageCategory) -> list[dict]:
+def get_game_system_page_data(game_system: GameSystem, category: PageCategory, page_index: int = 1) -> list[dict]:
 
     buffer: Any
     game_system_url: str
     request: Response
 
-    game_system_url = construct_game_system_url(game_system, category.value)
+    game_system_url = construct_game_system_url(game_system, category, page_index)
     request = requests.get(game_system_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     buffer = buffer.find("table", class_="tblSpecs")
@@ -173,7 +173,7 @@ def get_nb_of_pages_for_game_system(game_system: GameSystem, category: PageCateg
     game_system_url: str
     request: Response
 
-    game_system_url = construct_game_system_url(game_system, category.value)
+    game_system_url = construct_game_system_url(game_system, category)
     request = requests.get(game_system_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
 
