@@ -347,3 +347,185 @@ def test_search():
     }]
     data = search("Castlevania Symphony of the Night")
     assert data == expected_result
+
+
+def test_search_with_multiple_result_pages():
+    expected_result = [
+        {
+            "name": "Beats of Rage: Castlevania Symphony of Destruction",
+            "platform_code": "DC",
+            "url": "http://thecoverproject.net/view.php?game_id=6221"
+        },
+        {
+            "name": "Castlevania",
+            "platform_code": "N64",
+            "url": "http://thecoverproject.net/view.php?game_id=1029"
+        },
+        {
+            "name": "Castlevania",
+            "platform_code": "GBA",
+            "url": "http://thecoverproject.net/view.php?game_id=1116"
+        },
+        {
+            "name": "Castlevania",
+            "platform_code": "PS2",
+            "url": "http://thecoverproject.net/view.php?game_id=2401"
+        },
+        {
+            "name": "Castlevania",
+            "platform_code": "NES",
+            "url": "http://thecoverproject.net/view.php?game_id=2750"
+        },
+        {
+            "name": "Castlevania - Dracula X",
+            "platform_code": "SNES",
+            "url": "http://thecoverproject.net/view.php?game_id=12887"
+        },
+        {
+            "name": "Castlevania 2: Belmont's Revenge",
+            "platform_code": "GB",
+            "url": "http://thecoverproject.net/view.php?game_id=611"
+        },
+        {
+            "name": "Castlevania Adventure, The",
+            "platform_code": "GB",
+            "url": "http://thecoverproject.net/view.php?game_id=1103"
+        },
+        {
+            "name": "Castlevania Bloodlines (aka Castlevania: The New Generation)",
+            "platform_code": "Genesis",
+            "url": "http://thecoverproject.net/view.php?game_id=1735"
+        },
+        {
+            "name": "Castlevania Chronicles",
+            "platform_code": "PS1",
+            "url": "http://thecoverproject.net/view.php?game_id=6411"
+        },
+        {
+            "name": "Castlevania Double Pack",
+            "platform_code": "GBA",
+            "url": "http://thecoverproject.net/view.php?game_id=736"
+        },
+        {
+            "name": "Castlevania II: Simon's Quest",
+            "platform_code": "NES",
+            "url": "http://thecoverproject.net/view.php?game_id=2744"
+        },
+        {
+            "name": "Castlevania III: Dracula's Curse",
+            "platform_code": "NES",
+            "url": "http://thecoverproject.net/view.php?game_id=2754"
+        },
+        {
+            "name": "Castlevania Judgment",
+            "platform_code": "Wii",
+            "url": "http://thecoverproject.net/view.php?game_id=7697"
+        },
+        {
+            "name": "Castlevania Legends",
+            "platform_code": "GB",
+            "url": "http://thecoverproject.net/view.php?game_id=612"
+        },
+        {
+            "name": "Castlevania: Aria of Sorrow",
+            "platform_code": "GBA",
+            "url": "http://thecoverproject.net/view.php?game_id=8"
+        },
+        {
+            "name": "Castlevania: Circle of the Moon",
+            "platform_code": "GBA",
+            "url": "http://thecoverproject.net/view.php?game_id=9"
+        },
+        {
+            "name": "Castlevania: Curse Of Darkness",
+            "platform_code": "PS2",
+            "url": "http://thecoverproject.net/view.php?game_id=2033"
+        },
+        {
+            "name": "Castlevania: Curse of Darkness",
+            "platform_code": "Xbox",
+            "url": "http://thecoverproject.net/view.php?game_id=14349"
+        },
+        {
+            "name": "Castlevania: Dawn of Sorrow",
+            "platform_code": "DS",
+            "url": "http://thecoverproject.net/view.php?game_id=767"
+        },
+        {
+            "name": "Castlevania: Dracula X (aka Castlevania: Vampire's Kiss)",
+            "platform_code": "SNES",
+            "url": "http://thecoverproject.net/view.php?game_id=2267"
+        },
+        {
+            "name": "Castlevania: Harmony of Dissonance",
+            "platform_code": "GBA",
+            "url": "http://thecoverproject.net/view.php?game_id=10"
+        },
+        {
+            "name": "Castlevania: Lament Of Innocence",
+            "platform_code": "PS2",
+            "url": "http://thecoverproject.net/view.php?game_id=3354"
+        },
+        {
+            "name": "Castlevania: Legacy of Darkness",
+            "platform_code": "N64",
+            "url": "http://thecoverproject.net/view.php?game_id=564"
+        },
+        {
+            "name": "Castlevania: Lords of Shadow",
+            "platform_code": "X360",
+            "url": "http://thecoverproject.net/view.php?game_id=7704"
+        },
+        {
+            "name": "Castlevania: Lords of Shadow",
+            "platform_code": "PS3",
+            "url": "http://thecoverproject.net/view.php?game_id=12058"
+        },
+        {
+            "name": "Castlevania: Lords of Shadow 2",
+            "platform_code": "X360",
+            "url": "http://thecoverproject.net/view.php?game_id=9680"
+        },
+        {
+            "name": "Castlevania: Lords of Shadow 2",
+            "platform_code": "PS3",
+            "url": "http://thecoverproject.net/view.php?game_id=12059"
+        },
+        {
+            "name": "Castlevania: Lords of Shadow \u2013 Mirror of Fate",
+            "platform_code": "3ds",
+            "url": "http://thecoverproject.net/view.php?game_id=9600"
+        },
+        {
+            "name": "Castlevania: Lords of Shadow: Mirror of Fate",
+            "platform_code": "3ds",
+            "url": "http://thecoverproject.net/view.php?game_id=9601"
+        },
+        {
+            "name": "Castlevania: Order of Ecclesia",
+            "platform_code": "DS",
+            "url": "http://thecoverproject.net/view.php?game_id=7778"
+        },
+        {
+            "name": "Castlevania: Portrait of Ruin",
+            "platform_code": "DS",
+            "url": "http://thecoverproject.net/view.php?game_id=2601"
+        },
+        {
+            "name": "Castlevania: Symphony of the Night",
+            "platform_code": "PS1",
+            "url": "http://thecoverproject.net/view.php?game_id=895"
+        },
+        {
+            "name": "Castlevania: The Dracula X Chronicles",
+            "platform_code": "PSP",
+            "url": "http://thecoverproject.net/view.php?game_id=4070"
+        },
+        {
+            "name": "Super Castlevania IV",
+            "platform_code": "SNES",
+            "url": "http://thecoverproject.net/view.php?game_id=4739"
+        }
+    ]
+    data = search("Castlevania")
+    assert data == expected_result

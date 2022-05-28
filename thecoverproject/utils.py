@@ -23,9 +23,9 @@ def construct_game_cover_url(cover_id: int) -> str:
     return urls.cover_page.format(cover_id)
 
 
-def construct_search_url(research_topic: str) -> str:
+def construct_search_url(research_topic: str, page_index: int = 1) -> str:
 
     search_string: str
 
     search_string = research_topic.replace(" ", "+")
-    return urls.search_page.format(search_string)
+    return urls.search_page.format(search_string) + page_opt.format(page_index)

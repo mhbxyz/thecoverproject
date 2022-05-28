@@ -177,27 +177,35 @@ def get_nb_of_pages_for_game_system(game_system: Platform, category: PageCategor
     platform_url = construct_platform_url(game_system, category)
     request = requests.get(platform_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
+    paginator = buffer.find("div", class_="paginator")
 
-    if buffer is None:
+    if paginator is None:
         return 1
 
-    paginator = buffer.find("div", class_="paginator")
     links = paginator.find_all("a")[:-1]  # Retrieves all the pages links and removes the next page link
 
     return int(links[-1].text)
 
 
-def search(research_topic: str):
+def search(research_topic: str) -> list[dict]:
 
     buffer: Any
     game_system_url: str
     request: Response
+    nb_of_pages: int
+    search_results: list
 
-    game_system_url = construct_search_url(research_topic)
-    request = requests.get(game_system_url)
+    search_url = construct_search_url(research_topic)
+    request = requests.get(search_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
+    paginator = buffer.find("div", class_="paginator")
     buffer = buffer.find("table", class_="tblSpecs")
     rows = buffer.find_all("tr")
+
+    if paginator is None:
+        nb_of_pages = 1
+    else:
+        nb_of_pages = int(paginator.find_all("a")[-1].text)
 
     def get_data(row: Tag):
 
@@ -214,4 +222,15 @@ def search(research_topic: str):
             "url": construct_url(row.td.span.a.get("href"))
         }
 
-    return [get_data(row) for row in rows]
+    search_results = []
+    search_results.extend([get_data(row) for row in rows])
+
+    for n in range(2, nb_of_pages + 1):
+        search_url = construct_search_url(research_topic, page_index=n)
+        request = requests.get(search_url)
+        buffer = BeautifulSoup(request.text, 'html.parser')
+        buffer = buffer.find("table", class_="tblSpecs")
+        rows = buffer.find_all("tr")
+        search_results.extend([get_data(row) for row in rows])
+
+    return search_results
