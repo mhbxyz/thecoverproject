@@ -1,6 +1,6 @@
 from thecoverproject import Console, PageCategory
 from thecoverproject.navigation import get_platform_page_data, get_game_page_data, get_game_covers_data, \
-    get_nb_of_pages_for_game_system, search
+    get_nb_of_pages_for_platform, search
 
 TEST_GAME_ID = 895
 
@@ -333,9 +333,9 @@ def test_get_game_covers():
     assert data == expected_result
 
 
-def test_get_nb_of_pages_for_game_system():
+def test_get_nb_of_pages_for_platform():
     expected_result = 3
-    nb_of_pages = get_nb_of_pages_for_game_system(Console.playstation_one, PageCategory.A)
+    nb_of_pages = get_nb_of_pages_for_platform(Console.playstation_one, PageCategory.A)
     assert nb_of_pages == expected_result
 
 

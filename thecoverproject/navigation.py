@@ -132,13 +132,13 @@ def get_game_page_data(game_id: int, with_images: bool = False) -> dict:
     return data
 
 
-def get_platform_page_data(game_system: Platform, category: PageCategory, page_index: int = 1) -> list[dict]:
+def get_platform_page_data(platform: Platform, category: PageCategory, page_index: int = 1) -> list[dict]:
 
     buffer: Any
     platform_url: str
     request: Response
 
-    platform_url = construct_platform_url(game_system, category, page_index)
+    platform_url = construct_platform_url(platform, category, page_index)
     request = requests.get(platform_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     buffer = buffer.find("table", class_="tblSpecs")
@@ -168,13 +168,13 @@ def get_platform_page_data(game_system: Platform, category: PageCategory, page_i
     return [get_data(row) for row in rows]
 
 
-def get_nb_of_pages_for_game_system(game_system: Platform, category: PageCategory) -> int:
+def get_nb_of_pages_for_platform(platform: Platform, category: PageCategory) -> int:
 
     buffer: BeautifulSoup
     platform_url: str
     request: Response
 
-    platform_url = construct_platform_url(game_system, category)
+    platform_url = construct_platform_url(platform, category)
     request = requests.get(platform_url)
     buffer = BeautifulSoup(request.text, 'html.parser')
     paginator = buffer.find("div", class_="paginator")
@@ -190,7 +190,7 @@ def get_nb_of_pages_for_game_system(game_system: Platform, category: PageCategor
 def search(research_topic: str) -> list[dict]:
 
     buffer: Any
-    game_system_url: str
+    search_url: str
     request: Response
     nb_of_pages: int
     search_results: list

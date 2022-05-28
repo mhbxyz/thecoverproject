@@ -11,8 +11,8 @@ def construct_url(url: str):
     return url
 
 
-def construct_platform_url(game_system: Platform, index: PageCategory, page_index: int = 1) -> str:
-    return urls.game_systems[game_system] + index_opt.format(index.value) + page_opt.format(page_index)
+def construct_platform_url(platform: Platform, index: PageCategory, page_index: int = 1) -> str:
+    return urls.platforms[platform] + index_opt.format(index.value) + page_opt.format(page_index)
 
 
 def construct_game_url(game_id: int) -> str:
