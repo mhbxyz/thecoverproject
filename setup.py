@@ -7,6 +7,6 @@ setup(
     url='https://github.com/numbergazing/TheCoverProject',
     license='MIT',
     author='numbergazing',
-    author_email='manoahbernier@gmail.com',
+    author_email='hello@numbergazing.com',
     description='A Python library to download game covers from http://thecoverproject.net/'
 )
