@@ -200,11 +200,11 @@ def test_get_game_page_data_with_images():
 
     data = get_game_page_data(TEST_GAME_ID, with_images=True)
 
-    with open("images/ps1_castlevaniasymphonyofthenight_1_thumb.jpg", "rb") as image:
+    with open("../res/images/ps1_castlevaniasymphonyofthenight_1_thumb.jpg", "rb") as image:
         thumbnail = image.read()
         assert data["images"]["thumbnail"] == thumbnail
 
-    with open("images/ps1_castlevaniasymphonyofthenight_1.jpg", "rb") as image:
+    with open("../res/images/ps1_castlevaniasymphonyofthenight_1.jpg", "rb") as image:
         cover = image.read()
         assert data["images"]["cover"] == cover
 
@@ -390,6 +390,11 @@ def test_search_with_multiple_result_pages():
             "name": "Castlevania Adventure, The",
             "platform_code": "GB",
             "url": "http://thecoverproject.net/view.php?game_id=1103"
+        },
+        {
+            "name": "Castlevania Anniversary Collection",
+            "platform_code": "Switch",
+            "url": "http://thecoverproject.net/view.php?game_id=15757"
         },
         {
             "name": "Castlevania Bloodlines (aka Castlevania: The New Generation)",
